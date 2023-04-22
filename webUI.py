@@ -94,7 +94,7 @@ def modelAnalysis(model_path,config_path,cluster_model_path,device,enhance):
         if debug: traceback.print_exc()
         raise gr.Error(e)
 
-    
+
 def modelUnload():
     global model
     if model is None:
@@ -278,7 +278,7 @@ with gr.Blocks(
                         </font>
                         """)
                     mix_model_path = gr.Files(label="选择需要混合模型文件")
-                    mix_model_upload_button = gr.UploadButton("选择/追加需要混合模型文件", file_count="multiple", variant="primary")
+                    mix_model_upload_button = gr.UploadButton("选择/追加需要混合模型文件", file_count="multiple")
                     mix_model_output1 = gr.Textbox(
                                             label="混合比例调整，单位/%",
                                             interactive = True
@@ -291,8 +291,8 @@ with gr.Blocks(
                     mix_model_path.change(updata_mix_info,[mix_model_path],[mix_model_output1])
                     mix_model_upload_button.upload(upload_mix_append_file, [mix_model_upload_button,mix_model_path], [mix_model_path,mix_model_output1])
                     mix_submit.click(mix_submit_click, [mix_model_output1,mix_mode], [mix_model_output2])
-                    
-                    
+
+
     with gr.Tabs():
         with gr.Row(variant="panel"):
             with gr.Column():
@@ -308,4 +308,3 @@ with gr.Blocks(
     app.launch()
 
 
- 
